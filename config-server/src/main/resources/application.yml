@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        enabled: true
+        git:
+#          uri: file://${user.home}/personal-repository/msa-example/config
+          uri: https://github.com/freddieyyh/msa-sample-config
+server:
+  port: 8888

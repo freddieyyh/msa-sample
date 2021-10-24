@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono
 @RequestMapping("/eureka-sample")
 class EurekaSampleController(
     private val eurekaClient: EurekaClient,
+    private val loadBalanceWebClient: WebClient.Builder,
     private val discoveryClient: DiscoveryClient
 ) {
     @GetMapping("/service")
@@ -34,6 +35,14 @@ class EurekaSampleController(
                     .path("/api/cafes")
                     .build()
             }
+            .retrieve()
+            .bodyToMono(String::class.java)
+    }
+
+    @GetMapping("/cafe-proxy-lb")
+    fun getCafesWithLb(): Mono<String> {
+        return loadBalanceWebClient.build().get()
+            .uri("http://cafe/api/cafes")
             .retrieve()
             .bodyToMono(String::class.java)
     }

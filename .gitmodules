@@ -1,0 +1,3 @@
+[submodule "msa-sample-config"]
+	path = msa-sample-config
+	url = https://github.com/freddieyyh/msa-sample-config

@@ -14,7 +14,7 @@ class CafeHandler {
 
         return ServerResponse.ok()
             .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue("${request.pathVariable("name")} Cafe Contents")
+            .bodyValue("${if (request.pathVariables().containsKey("name")) request.pathVariable("name") else "non"} Cafe Contents")
     }
 
     companion object : KLogging()

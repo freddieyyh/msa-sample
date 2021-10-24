@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import reactivefeign.spring.config.ReactiveFeignClient
+import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/feign-sample")
@@ -24,9 +26,9 @@ class FeignSampleController(
     fun getCafes(
         @RequestParam name: String,
         @RequestParam(defaultValue = "direct") type: String
-    ): String {
+    ): Mono<String> {
         return when (type) {
-            "direct" -> cafeDirectService.getCafe(name)
+            "direct" -> Mono.just(cafeDirectService.getCafe(name))
             "ribbon" -> cafeRibbonService.getCafe(name)
             else -> throw NotImplementedError()
         }
@@ -36,7 +38,7 @@ class FeignSampleController(
 @Configuration
 class FeignConfiguration() {
     @Bean
-    fun feignDecoder() : Decoder {
+    fun feignDecoder(): Decoder {
         val factory = ObjectFactory<HttpMessageConverters> {
             HttpMessageConverters()
         }
@@ -51,8 +53,8 @@ interface CafeDirectService {
     fun getCafe(@PathVariable name: String): String
 }
 
-@FeignClient("cafe")
+@ReactiveFeignClient("cafe")
 interface CafeRibbonService {
     @GetMapping("/api/cafes/{name}", consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE])
-    fun getCafe(@PathVariable name: String): String
+    fun getCafe(@PathVariable name: String): Mono<String>
 }

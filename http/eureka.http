@@ -1,0 +1,8 @@
+### Eurake client를 통해서 서비스의 ip:port 가져오기
+GET http://localhost:8081/eureka-sample/service?serviceName=cafe
+
+### feign을 이용한 호출 (직접 url을 설정한 경우)
+GET http://localhost:8081/feign-sample/cafe-proxy?name=startbucks&typee=direct
+
+### feign을 이용한 호출 (서비스명을 설정한 경우)
+GET http://localhost:8081/feign-sample/cafe-proxy?name=startbucks&typee=ribbon

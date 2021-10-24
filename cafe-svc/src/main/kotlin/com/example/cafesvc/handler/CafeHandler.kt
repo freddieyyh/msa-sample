@@ -11,9 +11,10 @@ import reactor.core.publisher.Mono
 class CafeHandler {
     fun getCafes(request: ServerRequest) : Mono<ServerResponse> {
         logger.info { "Call get cafes" }
+
         return ServerResponse.ok()
-//            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue("Cafe Contents")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue("${request.pathVariable("name")} Cafe Contents")
     }
 
     companion object : KLogging()

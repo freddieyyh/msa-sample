@@ -1,12 +1,12 @@
-package io.freddie.usersvc
+package io.freddie.serviceregistry
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
-//@SpringBootTest
-class UserSvcApplicationTests {
+@SpringBootTest
+class ServiceRegistryApplicationTests {
 
-//    @Test
+    @Test
     fun contextLoads() {
     }
 

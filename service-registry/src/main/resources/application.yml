@@ -1,0 +1,15 @@
+server:
+  port: 8761
+
+eureka:
+  dashboard:
+    path: /eureka-ui
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+  server:
+    enableSelfPreservation: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

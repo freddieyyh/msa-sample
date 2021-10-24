@@ -12,7 +12,7 @@ class Routers {
     fun cafeRouter(cafeHandler: CafeHandler) = router {
         "/api".nest {
             accept(APPLICATION_JSON).nest {
-                GET("/cafes", cafeHandler::getCafes)
+                GET("/cafes/{name}", cafeHandler::getCafes)
             }
         }
     }

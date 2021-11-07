@@ -1,0 +1,38 @@
+GET http://localhost:8084/items/1
+
+###
+POST http://localhost:8084/items
+Content-Type: application/json
+
+{
+  "name": "item1",
+  "quantity": 10
+}
+
+###
+PUT http://localhost:8084/items/1
+Content-Type: application/json
+
+{
+  "name": "asd"
+}
+
+###
+DELETE http://localhost:8084/items/1
+
+###
+POST http://localhost:8084/groups
+Content-Type: application/json
+
+{
+  "name": "group1"
+}
+
+###
+PUT http://localhost:8084/groups/1/items/1
+
+###
+PUT http://localhost:8084/groups/1/test
+
+###
+GET http://localhost:8084/groups/1/rev/4
